@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="card shadow-lg p-4 border-0 rounded-4 bg-light">
+        <h2 class="text-center mb-4 text-primary fw-bold">Upload CSV for Batch Prediction</h2>
+        <form method="POST" action="/upload" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label for="file" class="form-label fw-semibold">Choose CSV File</label>
+                <input type="file" name="file" class="form-control" id="file" required>
+            </div>
+            <div class="text-center">
+                <button type="submit" class="btn btn-success px-4 py-2 rounded-pill shadow">Upload & Predict</button>
+            </div>
+        </form>
+    </div>
+
+    {% if table is not none %}
+    <div class="card shadow-lg p-4 mt-5 border-0 rounded-4 bg-white">
+        <h3 class="text-center text-success mb-4 fw-bold">Prediction Results</h3>
+        <div class="table-responsive">
+            <style>
+                table {
+                    border-collapse: collapse;
+                    width: 100%;
+                }
+
+                th, td {
+                    padding: 12px;
+                    text-align: center;
+                    border-bottom: 1px solid #ddd;
+                }
+
+                tr:hover {
+                    background-color: #f1f1f1;
+                }
+
+                th {
+                    background-color: #28a745;
+                    color: white;
+                }
+            </style>
+            {{ table|safe }}
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
